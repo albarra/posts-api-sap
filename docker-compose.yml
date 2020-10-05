@@ -1,0 +1,23 @@
+version: "3.7"
+services:
+    node:
+        build: .
+        container_name: posts-api
+        ports:
+            - "3000:3000"
+        depends_on:
+            - mysql
+        networks:
+            - asp-network
+    mysql:
+        container_name: mysql-posts-api
+        image: mysql:5.6
+        env_file:
+            - ./docker.env
+        ports:
+            - "3306:3306"
+        networks:
+            - asp-network
+networks:
+    asp-network:
+        name: asp-network
