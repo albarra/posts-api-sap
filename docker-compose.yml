@@ -3,6 +3,8 @@ services:
     node:
         build: .
         container_name: posts-api
+        env_file:
+            - ./docker.env
         ports:
             - "3000:3000"
         depends_on:

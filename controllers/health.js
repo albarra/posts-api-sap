@@ -1,5 +1,6 @@
 const Router = require('@koa/router');
 const router = new Router()
+var newrelic = require('newrelic');
 
 router
 .get('/health', (ctx, next) => {
@@ -10,6 +11,7 @@ router
         throw new Error("My custom error message")
     } catch (e) {
         console.log(e)
+        newrelic.noticeError(e)
     }
     ctx.body = {status: 'error'}
 })
